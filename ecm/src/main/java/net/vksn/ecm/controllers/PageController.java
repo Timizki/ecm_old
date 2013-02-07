@@ -2,7 +2,6 @@ package net.vksn.ecm.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.vksn.ecm.filters.SitemapFilter;
 import net.vksn.sitemap.model.SitemapItem;
 import net.vksn.sitemap.services.SitemapItemService;
 import net.vksn.sitemap.services.SitemapService;
@@ -17,26 +16,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Sample controller for going to the home page with a message
  */
 @Controller
-public class HomeController {
+public class PageController extends AbstractPageController {
 
 	@Autowired
 	private SitemapService sitemapService;
 	
 	@Autowired
 	private SitemapItemService sitemapItemService;
+	
 	/**
-	 * Selects the home page and populates the model with a message
+	 * Try to load <code>SitemapItem</code>. If success continues to view rendering, <code>SitemapItem</code> contains decorations name.
+	 * If fails return error views name.
 	 */
 	@RequestMapping(value = "/*.html", method = RequestMethod.GET)
-	public String home(Model model, HttpServletRequest request) {
-		
-		String path = request.getServletPath();	
+	public String page(Model model, HttpServletRequest request) {
 		SitemapItem item = null;
 		try {
-			int sitemapId = (Integer)request.getSession().getAttribute(SitemapFilter.CURRENT_SITEMAP);
-			path = path.substring(1, path.lastIndexOf("."));
-			String[] pathSlices = path.split("/");
-			item = sitemapItemService.getItemByPath(sitemapId, pathSlices);
+			int sitemapId = getSitemapId(request);			
+			String[] path = getPagePath(request);			
+			item = sitemapItemService.getItemByPath(sitemapId, path);
 			model.addAttribute("sitemapItem", item);
 		} catch (Exception e) {			
 			e.printStackTrace();

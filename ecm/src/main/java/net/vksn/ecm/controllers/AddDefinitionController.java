@@ -24,7 +24,7 @@ import org.springframework.web.bind.support.SessionStatus;
 /**
  * Sample controller for going to the home page with a message
  */
-@Controller
+//@Controller
 @SessionAttributes("definition")
 public class AddDefinitionController {
 
