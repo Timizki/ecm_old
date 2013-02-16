@@ -34,13 +34,7 @@
 	</beans:bean>	
 	<beans:bean id="definitionDAO" class="net.vksn.ecm.tiles.dao.DatabaseDefinitionDAO">
 		<beans:property name="sessionFactory" ref="sessionFactory" />
-		<beans:property name="definitionsReader" ref="definitionsReader"/>
-	</beans:bean>
-	<beans:bean id="definitionsReader" class="org.apache.tiles.definition.digester.DigesterDefinitionsReader" />
-<!-- 	<beans:bean id="definitionsReader" class="net.vksn.ecm.tiles.dao.DatabaseDefinitionsReader" /> -->
+ 	</beans:bean>
 
 	<beans:import resource="controllers.xml" />
-
-
-
 </beans:beans>

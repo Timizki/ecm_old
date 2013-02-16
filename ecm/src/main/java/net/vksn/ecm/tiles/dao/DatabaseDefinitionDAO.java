@@ -27,8 +27,8 @@ public class DatabaseDefinitionDAO implements RefreshMonitor, DefinitionDAO<Stri
 	private static final Logger log = LogManager.getLogger(DatabaseDefinitionDAO.class); 
 	@Autowired
 	private SessionFactory sessionFactory;
-	@Autowired
-	private DefinitionsReader definitionReader;
+//	@Autowired
+//	private DefinitionsReader definitionReader;
 	private Map<String, Definition> definitions = new HashMap<String, Definition>();
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -36,9 +36,9 @@ public class DatabaseDefinitionDAO implements RefreshMonitor, DefinitionDAO<Stri
 	}
 	
 	
-	public void setDefinitionsReader(DefinitionsReader reader) {
-		this.definitionReader = reader;
-	}
+//	public void setDefinitionsReader(DefinitionsReader reader) {
+//		this.definitionReader = reader;
+//	}
 	
 	public void storeDefinition(Definition definition) {
 		Session session = sessionFactory.openSession();
@@ -72,16 +72,7 @@ public class DatabaseDefinitionDAO implements RefreshMonitor, DefinitionDAO<Stri
 	@Override
 	@Transactional(readOnly = true, propagation=Propagation.REQUIRES_NEW)
 	public Map<String, Definition> getDefinitions(String customizationKey) {
-		log.entry();
-		
-			Session session = sessionFactory.openSession();
-			Criteria criteria = session.createCriteria(net.vksn.ecm.model.TilesDefinition.class);
-			@SuppressWarnings("unchecked")
-			List<Definition> definitionsFromDatabase = criteria.list();
-			log.exit();
-			this.definitions = definitionReader.read(definitionsFromDatabase);
-		
-		return definitions;
+		throw new RuntimeException("Method not implemented!");
 	}
 
 	@Override

@@ -36,6 +36,7 @@
 			<list>
 				<value>net.vksn.sitemap.model</value>
 				<value>net.vksn.ecm.model</value>
+				<value>net.vksn.bedrock.model</value>
 			</list>
 		</property>	
 			

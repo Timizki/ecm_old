@@ -28,7 +28,7 @@ public class PageController extends AbstractPageController {
 	 * Try to load <code>SitemapItem</code>. If success continues to view rendering, <code>SitemapItem</code> contains decorations name.
 	 * If fails return error views name.
 	 */
-	@RequestMapping(value = "/*.html", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String page(Model model, HttpServletRequest request) {
 		SitemapItem item = null;
 		try {

@@ -1,9 +1,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="ecm" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 THIS IS BODY<br/>
 <br/>
-<form:form commandName="sitemapItem">
-----<ecm:inputText name="content" /> ----
-	<input type="submit" name="Tallenna" value="Tallenna"  />
-</form:form>
+<ecm:inputText name="content" />

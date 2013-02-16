@@ -8,7 +8,7 @@
 <sec:authorize var="authorized" ifAllGranted="ROLE_ADMIN"/>
 <c:choose>
 	<c:when test="${param['edit'] and authorized}">
-		<form:input path="properties['${name}']"/>
+		<form:textarea path="properties['${name}']"/>
 	</c:when>
 	<c:otherwise>
 		<c:out value="${sitemapItem.properties[name]}" escapeXml="true"/>

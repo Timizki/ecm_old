@@ -11,7 +11,5 @@
 		configure as beans -->
 	<context:component-scan base-package="net.vksn.ecm.controllers" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
-
 </beans>

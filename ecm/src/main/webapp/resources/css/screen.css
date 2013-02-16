@@ -131,3 +131,25 @@ body {
 .property {
 	margin-bottom: 12px;
 }
+
+ul#navigation {
+	list-style-type: none;
+}
+
+ul#navigation li {
+	display:inline;
+	margin-left: 25px;
+}
+
+ul#navigation li.first {
+	margin-left:0;
+}
+
+ul#navigation li a {
+	text-decoration: none;
+}
+
+ul#navigation li a span {
+	color: black;
+	font-weight: bold;
+}

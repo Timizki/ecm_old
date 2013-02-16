@@ -1,1 +1,2 @@
-entry 1  -  entry 2  -  entry 3
+<%@ taglib tagdir="/WEB-INF/tags" prefix="ecm" %>
+<ecm:navigation navigationsId="navigation" /> 
