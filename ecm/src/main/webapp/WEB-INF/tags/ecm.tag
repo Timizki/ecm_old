@@ -8,9 +8,9 @@
 <sec:authorize var="authorized" ifAnyGranted="ROLE_ADMIN"/>
 
 <c:choose>
-	<c:when test="${authorized}">
-		<ecm:ecmManager />
+	<c:when test="${authorized}">		
 		<form:form commandName="sitemapItem" id="ecmForm">
+			<ecm:ecmManager />
 			<jsp:invoke fragment="body" />
 		</form:form>
 	</c:when>

@@ -5,7 +5,7 @@
 <html>
 	<head>	
 		<title>
-			<tiles:insertAttribute name="title" />
+			<ecm:title />
 		</title>
 		<sec:authorize ifAllGranted="ROLE_ADMIN">
 			<link rel="stylesheet" type="text/css" href="resources/css/ecm.css">

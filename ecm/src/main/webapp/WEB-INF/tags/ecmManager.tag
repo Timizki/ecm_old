@@ -7,17 +7,21 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 <sec:authorize ifAnyGranted="ROLE_ADMIN">
+	<c:set var="mode" value="${param['mode']}" />
 	<div id="ecmManagerToolbar">
 		<ul>
 			<c:choose>
-				<c:when test="${param['edit']}">
+				<c:when test="${(mode eq 'edit' or mode eq 'addPage')}">
 					<li class="first"><a onclick="document.forms['ecmForm'].submit();">Tallenna</a></li>				</c:when>
 				<c:otherwise>
-					<li class="first"><a href="?edit=true">Muokkaa</a></li>
+					<li class="first"><a href="?mode=edit">Muokkaa</a></li>
 				</c:otherwise>
 			</c:choose>
-			<li><a href="?createPage=true">Uusi sivu</a></li>
+			<li><a href="?mode=addPage">Uusi sivu</a></li>
 		</ul>
+		<c:if test="${mode eq 'addPage'}">
+			<span>Sivun nimi:</span><form:input path="name"/>
+		</c:if>
 		<div class="clear"></div>
 		<span><a href="/logout.do">Kirjaudu ulos</a></span>
 		<span id="ecmLoginUser">${pageContext.request.remoteUser}</span>
