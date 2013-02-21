@@ -8,9 +8,9 @@
 			<ecm:title />
 		</title>
 		<sec:authorize ifAllGranted="ROLE_ADMIN">
-			<link rel="stylesheet" type="text/css" href="resources/css/ecm.css">
+			<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/ecm.css">
 		</sec:authorize>
-		<link rel="stylesheet" type="text/css" href="resources/css/screen.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/screen.css">
 	</head>
 	<body>
 		<ecm:ecm>

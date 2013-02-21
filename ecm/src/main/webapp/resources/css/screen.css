@@ -34,6 +34,17 @@ body {
 	border-bottom: solid 2px #a0a0a0;
 }
 
+#page #body {
+	margin: auto 0;
+	whidth: 940px;
+	
+}
+
+#page #body input {
+	whidth: 350px;
+	
+}
+
 #sidebar {
 	float: right;
 	width: 200px;	
@@ -152,4 +163,36 @@ ul#navigation li a {
 ul#navigation li a span {
 	color: black;
 	font-weight: bold;
+}
+
+div#ecmLogin {
+	margin: auto 0;
+	float:left;
+}
+
+div#ecmLogin .ecmUsername {
+	
+}
+
+div#ecmLogin .ecmPassword {
+	
+}
+
+div#ecmLogin .ecmUsername label,
+div#ecmLogin .ecmUsername label span {
+	width: 70px;
+}
+
+div#ecmLogin .ecmPassword label,
+div#ecmLogin .ecmPassword label span {
+	width: 70px;
+}
+
+
+div#ecmLogin .ecmUsername #ecmUsernameInput {
+	
+}
+
+div#ecmLogin .ecmPassword #ecmPasswordInput {
+	
 }
