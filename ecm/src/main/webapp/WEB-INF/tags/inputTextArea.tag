@@ -10,8 +10,11 @@
 <c:choose>
 	<c:when test="${(mode eq 'edit' or mode eq 'addPage') and authorized}">
 		<form:textarea path="properties['${name}']"/>
+		<script>
+			CKEDITOR.replace('properties[\'${name}\']');
+		</script>
 	</c:when>
 	<c:otherwise>
-		<c:out value="${sitemapItem.properties[name]}" escapeXml="true"/>
+		<c:out value="${sitemapItem.properties[name]}" escapeXml="false"/>
 	</c:otherwise>
 </c:choose>

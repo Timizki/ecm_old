@@ -13,7 +13,7 @@
 			<ul>
 				<c:choose>
 					<c:when test="${(mode eq 'edit' or mode eq 'addPage')}">
-						<li class="first"><a onclick="document.forms['ecmForm'].submit();">Tallenna</a></li>				</c:when>
+						<li class="first"><a href="#" onclick="document.forms['ecmForm'].submit();">Tallenna</a></li>				</c:when>
 					<c:otherwise>
 						<li class="first"><a href="?mode=edit">Muokkaa</a></li>
 					</c:otherwise>
@@ -22,7 +22,7 @@
 			</ul>
 		</div>
 		<div id="ecmPageAttributes">
-			<c:if test="${mode eq 'addPage'}">
+			<c:if test="${mode eq 'edit' or mode eq 'addPage'}">
 				<span>Sivun nimi:</span><form:input path="name"/>
 				<span>Yläsivu:</span>
 				<form:select path="parent">

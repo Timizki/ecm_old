@@ -9,6 +9,7 @@
 		</title>
 		<sec:authorize ifAllGranted="ROLE_ADMIN">
 			<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/ecm.css">
+			<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 		</sec:authorize>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/screen.css">
 	</head>
