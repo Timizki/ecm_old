@@ -17,6 +17,7 @@ public class TilesDefinition extends org.apache.tiles.Definition implements Seri
 	private Integer id;
 	private Date created;
 	private Date deleted;
+	private boolean systemDefinition;
 	
 //	@Id
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -57,4 +58,13 @@ public class TilesDefinition extends org.apache.tiles.Definition implements Seri
 	public void setAttributes(Map<String, Attribute> attributes) {
 		super.addAll(attributes);
 	}
+	
+	public boolean isSystemDefinition() {
+		return systemDefinition;
+	}
+	
+	public void setSystemDefinition(boolean systemDefinition) {
+		this.systemDefinition = systemDefinition;
+	}
+	
 }

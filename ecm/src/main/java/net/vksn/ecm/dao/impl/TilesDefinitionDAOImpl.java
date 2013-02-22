@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +27,7 @@ public class TilesDefinitionDAOImpl implements TilesDefinitionDAO {
 		Session session = sessionFactory.openSession();
 		Criteria criteria = session
 				.createCriteria(TilesDefinition.class);
-
+		criteria.add(Restrictions.eq("systemDefinition", false));
 		@SuppressWarnings("unchecked")
 		List<TilesDefinition> definitions = criteria.list();
 

@@ -11,6 +11,9 @@
 		<property name="deleted" type="date"/>
 		<property name="extends"/>
 		<property name="name"/>
+		<property name="systemDefinition" type="boolean" not-null="true">
+			<column name="system_definition" default="default false"/>
+		</property>
 		<many-to-one name="templateAttribute" class="net.vksn.ecm.model.TilesAttribute"  column="template_attribute_id"  fetch="join" />
 		<map name="attributes">
 				<key column="id" />	
