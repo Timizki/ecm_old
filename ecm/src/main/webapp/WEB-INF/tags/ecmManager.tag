@@ -16,7 +16,7 @@
 						<c:when test="${(mode eq 'edit' or mode eq 'addPage')}">
 							<li class="first"><a href="#" onclick="document.forms['ecmForm'].submit();">Tallenna</a></li>				</c:when>
 						<c:otherwise>
-							<li class="first"><a href="?mode=edit">Muokkaa</a></li>
+							<li class="first"><a href="?mode=edit">Muokkaa sivua</a></li>
 						</c:otherwise>
 					</c:choose>
 					<li><a href="?mode=addPage">Uusi sivu</a></li>
@@ -36,7 +36,11 @@
 			</div>
 		</div>
 		<div class="clear"></div>
-		<span><a href="/logout.do">Kirjaudu ulos</a></span>
-		<span id="ecmLoginUser">${pageContext.request.remoteUser}</span>
+		<div id="ecmToolbarRightPart">
+			<div id="ecmLoginInfo">
+				<span id="ecmLoginUser">${pageContext.request.remoteUser}</span>
+				<span><a href="/logout.do">Kirjaudu ulos</a></span>				
+			</div>
+		</div>
 	</div>
 </sec:authorize>

@@ -1,13 +1,20 @@
 #ecmManagerToolbar {
-	padding: 5px;
+	padding: 10px;
 	margin:0 auto;
+	margin-bottom: 5px;
 	width: 95%;
 	height: 50px;
 	background-color: #fafafa;
 	border: 1px dashed gray;
+	font-family: Verdana, sans-serif;
+	font-size: 10px;
 }
 #ecmManagerToolbar #ecmToolbarLeftPart {
 	float:left;
+}
+
+#ecmManagerToolbar #ecmToolbarRightPart {
+	float:right;
 }
 
 #ecmManagerToolbar #ecmPageActions {
@@ -19,12 +26,14 @@
 }
 
 #ecmManagerToolbar ul {
+	margin:0;
+	padding:0;
 	list-style: none;
 }
 
 #ecmManagerToolbar ul li {
 	display: inline;
-	margin-left: 20px;	
+	margin-left: 10px;	
 }
 
 #ecmManagerToolbar ul li.first {
@@ -32,6 +41,5 @@
 }
 
 #ecmLoginUser {
-	float:right;
 	font-weight: bold;
 }
