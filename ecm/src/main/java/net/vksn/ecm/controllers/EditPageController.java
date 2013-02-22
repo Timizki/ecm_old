@@ -29,6 +29,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @SessionAttributes("sitemapItem")
 public class EditPageController extends AbstractPageController {
+	private static final String SITEMAP_ITEM_ATTRIBUTE = "sitemapItem";
+	private static final String SITEMAP_ATTRIBUTE = "sitemap";
+	private static final String TEMPLATES_ATTRIBUTE = "templates";
 	@Autowired
 	private SitemapItemService sitemapItemService;
 
@@ -45,6 +48,10 @@ public class EditPageController extends AbstractPageController {
 		sitemapItemEditor.setSitemapItempService(sitemapItemService);
 		binder.registerCustomEditor(SitemapItem.class, sitemapItemEditor);
 	}
+	private List<TilesDefinition> getDefinitions() {
+		List<TilesDefinition> definitions = defintionService.getDefinitions();
+		return definitions;
+	}
 
 	@RequestMapping(params = "mode=edit", method = RequestMethod.GET)
 	public ModelAndView getEditPage(HttpServletRequest request)
@@ -52,9 +59,10 @@ public class EditPageController extends AbstractPageController {
 		int sitemapId = getSitemapId(request);
 		String[] path = getPagePath(request);
 		SitemapItem item = sitemapItemService.getItemByPath(sitemapId, path);
-
+		
 		ModelAndView mv = new ModelAndView(item.getDecorationName());
-		mv.addObject("sitemapItem", item);
+		mv.addObject(SITEMAP_ITEM_ATTRIBUTE, item);
+		mv.addObject(TEMPLATES_ATTRIBUTE, getDefinitions());
 		return mv;
 	}
 
@@ -64,13 +72,12 @@ public class EditPageController extends AbstractPageController {
 		int sitemapId = getSitemapId(request);
 		Sitemap sitemap = sitemapService.getSitemap(sitemapId);
 		SitemapItem item = new SitemapItem();
-		item.setDecorationName("home");
-		List<TilesDefinition> definitions = defintionService.getDefinitions();
-
+		List<TilesDefinition> definitions = getDefinitions();
+		item.setDecorationName(definitions.iterator().next().getName());
 		ModelAndView mv = new ModelAndView(item.getDecorationName());
-		mv.addObject("sitemapItem", item);
-		mv.addObject("sitemap", sitemap);
-		mv.addObject("templates", definitions);
+		mv.addObject(SITEMAP_ITEM_ATTRIBUTE, item);
+		mv.addObject(SITEMAP_ATTRIBUTE, sitemap);
+		mv.addObject(TEMPLATES_ATTRIBUTE, definitions);
 		return mv;
 	}
 
