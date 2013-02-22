@@ -9,29 +9,31 @@
 <sec:authorize ifAnyGranted="ROLE_ADMIN">
 	<c:set var="mode" value="${param['mode']}" />
 	<div id="ecmManagerToolbar">
-		<div id="ecmPageActions">
-			<ul>
-				<c:choose>
-					<c:when test="${(mode eq 'edit' or mode eq 'addPage')}">
-						<li class="first"><a href="#" onclick="document.forms['ecmForm'].submit();">Tallenna</a></li>				</c:when>
-					<c:otherwise>
-						<li class="first"><a href="?mode=edit">Muokkaa</a></li>
-					</c:otherwise>
-				</c:choose>
-				<li><a href="?mode=addPage">Uusi sivu</a></li>
-			</ul>
-		</div>
-		<div id="ecmPageAttributes">
-			<c:if test="${mode eq 'edit' or mode eq 'addPage'}">
-				<span>Sivun nimi:</span><form:input path="name"/>
-				<span>Yläsivu:</span>
-				<form:select path="parent">
-					<form:option value="">Ei yläsivua</form:option>
-					<form:option value="1">Home</form:option>
-					<form:option value="50">Ajankohtaista</form:option>
-				</form:select>
-				<span>Sivupohja:</span><form:select path="decorationName" items="${templates}" itemLabel="name" itemValue="name"/>
-			</c:if>
+		<div id="ecmToolbarLeftPart">
+			<div id="ecmPageActions">
+				<ul>
+					<c:choose>
+						<c:when test="${(mode eq 'edit' or mode eq 'addPage')}">
+							<li class="first"><a href="#" onclick="document.forms['ecmForm'].submit();">Tallenna</a></li>				</c:when>
+						<c:otherwise>
+							<li class="first"><a href="?mode=edit">Muokkaa</a></li>
+						</c:otherwise>
+					</c:choose>
+					<li><a href="?mode=addPage">Uusi sivu</a></li>
+				</ul>
+			</div>
+			<div id="ecmPageAttributes">
+				<c:if test="${mode eq 'edit' or mode eq 'addPage'}">
+					<span>Sivun nimi:</span><form:input path="name"/>
+					<span>Yläsivu:</span>
+					<form:select path="parent">
+						<form:option value="">Ei yläsivua</form:option>
+						<form:option value="1">Home</form:option>
+						<form:option value="50">Ajankohtaista</form:option>
+					</form:select>
+					<span>Sivupohja:</span><form:select path="decorationName" items="${templates}" itemLabel="name" itemValue="name"/>
+				</c:if>
+			</div>
 		</div>
 		<div class="clear"></div>
 		<span><a href="/logout.do">Kirjaudu ulos</a></span>

@@ -1,10 +1,21 @@
 #ecmManagerToolbar {
-	padding: 10px;
+	padding: 5px;
 	margin:0 auto;
 	width: 95%;
 	height: 50px;
 	background-color: #fafafa;
 	border: 1px dashed gray;
+}
+#ecmManagerToolbar #ecmToolbarLeftPart {
+	float:left;
+}
+
+#ecmManagerToolbar #ecmPageActions {
+	height: 25px;
+}
+
+#ecmManagerToolbar #ecmPageAttributes {
+	height: 25px;
 }
 
 #ecmManagerToolbar ul {
