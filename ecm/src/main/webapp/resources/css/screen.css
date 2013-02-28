@@ -143,24 +143,24 @@ body {
 	margin-bottom: 12px;
 }
 
-ul#navigation {
+div#navigation ul {
 	list-style-type: none;
 }
 
-ul#navigation li {
+div#navigation ul li {
 	display:inline;
 	margin-left: 25px;
 }
 
-ul#navigation li.first {
+div#navigation ul li.first {
 	margin-left:0;
 }
 
-ul#navigation li a {
+div#navigation ul li a {
 	text-decoration: none;
 }
 
-ul#navigation li a span {
+div#navigation ul li a span {
 	color: black;
 	font-weight: bold;
 }

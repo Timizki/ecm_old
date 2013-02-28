@@ -34,7 +34,7 @@
 	<filter-mapping>
 		<filter-name>springOpenSessionInViewFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping> 
+	</filter-mapping>
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -47,7 +47,7 @@
 		<filter-name>sitemapFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
