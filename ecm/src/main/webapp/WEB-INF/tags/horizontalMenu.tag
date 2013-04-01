@@ -6,7 +6,6 @@
 <sec:authorize var="authorized" ifAnyGranted="ROLE_ADMIN"/>
 <div id="navigation">
 	<c:set var="mode" value="${param['mode']}" />
-	------ ${isLastItem} ------
 	<c:choose>
 		<c:when test="${(mode eq 'edit' or mode eq 'addPage') and authorized}">
 			<dev:navigation var="levelRootItem" depth="3" sitemapId="${currentSitemapId}">
