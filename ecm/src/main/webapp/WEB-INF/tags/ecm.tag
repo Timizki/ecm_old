@@ -9,7 +9,7 @@
 
 <c:choose>
 	<c:when test="${authorized}">		
-		<form:form commandName="sitemapItem" id="ecmForm">
+		<form:form commandName="sitemapItemForm" id="ecmForm">
 			<ecm:ecmManager />
 			<jsp:invoke fragment="body" />
 		</form:form>

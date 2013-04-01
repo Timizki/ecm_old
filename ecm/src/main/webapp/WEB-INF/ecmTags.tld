@@ -39,10 +39,25 @@
 			<required>true</required>
 		</attribute>
 		<attribute>
-			<name>sitemapItem</name>
-			<required>true</required>
-			<type>net.vksn.sitemap.model.SitemapItem</type>
+			<name>sitemapId</name>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	<tag>
+		<name>entityIterator</name>
+		<tag-class>net.vksn.ecm.tags.Navigation</tag-class>
+		<bodycontent>JSP</bodycontent>
+		<attribute>
+			<name>id</name>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>returnURL</name>
+		<tag-class>net.vksn.ecm.tags.ReturnUrlTag</tag-class>
+		<attribute>
+			<name>var</name>
+			<required>true</required>
+		</attribute>
+	</tag>	
 </taglib>

@@ -1,4 +1,4 @@
-package net.vksn.ecm.controllers;
+package net.vksn.ecm.cpanel.controllers;
 
 import java.util.Map;
 
@@ -9,10 +9,7 @@ import net.vksn.sitemap.services.SitemapItemService;
 import net.vksn.sitemap.services.SitemapService;
 
 import org.apache.tiles.definition.dao.DefinitionDAO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,9 +27,6 @@ public class AddDefinitionController {
 
 	@Autowired
 	private DefinitionDAO<String> definitionDao;
-
-	private static final Logger logger = LoggerFactory
-			.getLogger(AddDefinitionController.class);
 
 	@Autowired
 	private SitemapService sitemapService;

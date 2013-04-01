@@ -10,14 +10,12 @@
     <security:http security="none" pattern="/styles/*"/>
 	<security:http security="none" pattern="/images/*"/>
 	<security:http security="none" pattern="/favicon.ico"/>
-<!-- 	<security:http security="none" pattern="/login.do" /> -->
 	
 	<security:http auto-config="true">
-		<security:intercept-url pattern="/login.go" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-		<security:intercept-url pattern="/ecmadmin/*" access="ROLE_USER,ROLE_ADMIN" />
+		<security:intercept-url pattern="/login.do" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<security:intercept-url pattern="/cpanel/**" access="ROLE_ADMIN" />
 		<security:logout invalidate-session="true" logout-url="/logout.do"/>
 		<security:form-login login-page="/login.do" 
-				default-target-url="/home.html" 
 				always-use-default-target="true"
 				authentication-failure-url="/login.do?errors=true" />		
 	</security:http>

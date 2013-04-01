@@ -9,9 +9,9 @@
 <c:set var="mode" value="${param['mode']}" />
 <c:choose>
 	<c:when test="${(mode eq 'edit' or mode eq 'addPage') and authorized}">
-		<form:textarea path="properties['${name}']"/>
+		<form:textarea path="sitemapItem.properties['${name}']"/>
 		<script>
-			CKEDITOR.replace('properties[\'${name}\']');
+			CKEDITOR.replace('sitemapItem.properties[\'${name}\']',  {toolbarStartupExpanded : false});
 		</script>
 	</c:when>
 	<c:otherwise>

@@ -1,7 +1,6 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="ecm" %>
-
 <html>
 	<head>	
 		<title>
@@ -16,19 +15,26 @@
 	<body>
 		<ecm:ecm>
 			<jsp:attribute name="body">
-				<div id="page">		
-					<div id="header">
-						<tiles:insertAttribute name="header"/>
+				<div id="pageContainer">
+					<div class="page"></div>
+					<div id="headerStripe">					
+						<div id="page">		
+							<div id="header">
+								<div class="headerContent">
+									<tiles:insertAttribute name="header" ignore="true"/>
+								</div>
+								<div id="menu">
+									<tiles:insertAttribute name="menu" />
+								</div>
+							</div>							
+							<div id="body">
+								<tiles:insertAttribute name="body" ignore="true"/>
+							</div>
+							<div id="footer">
+								<tiles:insertAttribute name="footer" ignore="true"/>
+							</div>		
+						</div>
 					</div>
-					<div id="menu">
-						<tiles:insertAttribute name="menu"/>
-					</div>
-					<div id="body">
-						<tiles:insertAttribute name="body"/>
-					</div>
-					<div id="footer">
-						<tiles:insertAttribute name="footer"/>
-					</div>		
 				</div>
 			</jsp:attribute>
 		</ecm:ecm>

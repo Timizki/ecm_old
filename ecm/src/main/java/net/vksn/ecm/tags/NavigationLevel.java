@@ -115,6 +115,7 @@ public class NavigationLevel extends BodyTagSupport {
 	public int doEndTag() throws JspException {
 		pageContext.setAttribute(var, null);
 		pageContext.setAttribute(PAGECONTEXT_STYLECLASS_ATTRIBUTE, null);
+		
 		itemNumber = 0;
 		activeSitemapItem = null;
 		currentLevelIterator = null;

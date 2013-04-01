@@ -10,7 +10,7 @@
 
 <c:choose>
 	<c:when test="${(mode eq 'edit' or mode eq 'addPage') and authorized}">
-		<form:input path="properties['${name}']"/>
+		<form:input path="sitemapItem.properties['${name}']"/>
 	</c:when>
 	<c:otherwise>
 		<c:out value="${sitemapItem.properties[name]}" escapeXml="true"/>

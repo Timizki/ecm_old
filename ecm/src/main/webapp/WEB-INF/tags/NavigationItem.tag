@@ -11,8 +11,8 @@
 <sec:authorize var="authorized" ifAllGranted="ROLE_ADMIN"/>
 <li class="${styleClass}">
 	<c:choose>
-		<c:when test="${(item.id eq sitemapItem.id) and ((mode eq 'edit' or mode eq 'addPage') and authorized)}">
-			<form:input path="properties['title']"/>
+		<c:when test="${((mode eq 'edit' or mode eq 'addPage') and authorized) and (item.id eq sitemapItemForm.sitemapItem.id )}">
+			<form:input path="sitemapItem.properties['title']"/>
 		</c:when>
 		<c:otherwise>
 			<a href="${pageContext.request.contextPath}/${item.pathAsString}.html" class="${styleClass}"><span class="${styleClass}"><c:out value="${empty item.properties['title'] ? item.name : item.properties['title']}" /></span></a>

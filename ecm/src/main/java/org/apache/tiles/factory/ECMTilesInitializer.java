@@ -7,13 +7,22 @@ import org.apache.tiles.startup.AbstractTilesInitializer;
 
 public class ECMTilesInitializer extends AbstractTilesInitializer {
 	public static final Logger log = LogManager.getLogger(ECMTilesInitializer.class);
+
 	private AbstractTilesContainerFactory tilesContainerFactory;
+	private String containerKey;
+	
+	public void setContainerKey(String containerKey) {
+		this.containerKey = containerKey;
+	}
 	
 	public void setTilesContainerFactory(
 			AbstractTilesContainerFactory tilesContainerFactory) {
 		this.tilesContainerFactory = tilesContainerFactory;
 	}
-
+	@Override
+	protected String getContainerKey(ApplicationContext applicationContext) {
+		return containerKey;
+	}
 	@Override
 	protected AbstractTilesContainerFactory createContainerFactory(
 			ApplicationContext context) {
@@ -24,5 +33,4 @@ public class ECMTilesInitializer extends AbstractTilesInitializer {
 		log.exit();
 		return tilesContainerFactory;
 	}
-
 }

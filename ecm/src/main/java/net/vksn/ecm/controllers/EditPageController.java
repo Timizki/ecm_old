@@ -1,11 +1,13 @@
 package net.vksn.ecm.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import net.vksn.bedrock.exceptions.EntityNotFoundException;
-import net.vksn.ecm.controllers.validator.SitemapItemValidator;
+import net.vksn.ecm.controllers.form.SitemapItemForm;
+import net.vksn.ecm.controllers.validator.SitemapItemFormValidator;
 import net.vksn.ecm.converter.SitemapItemEditor;
 import net.vksn.ecm.model.TilesDefinition;
 import net.vksn.ecm.service.DefinitionService;
@@ -16,22 +18,18 @@ import net.vksn.sitemap.services.SitemapService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@SessionAttributes("sitemapItem")
 public class EditPageController extends AbstractPageController {
-	private static final String SITEMAP_ITEM_ATTRIBUTE = "sitemapItem";
-	private static final String SITEMAP_ATTRIBUTE = "sitemap";
-	private static final String TEMPLATES_ATTRIBUTE = "templates";
+
 	@Autowired
 	private SitemapItemService sitemapItemService;
 
@@ -48,50 +46,73 @@ public class EditPageController extends AbstractPageController {
 		sitemapItemEditor.setSitemapItempService(sitemapItemService);
 		binder.registerCustomEditor(SitemapItem.class, sitemapItemEditor);
 	}
+	
 	private List<TilesDefinition> getDefinitions() {
 		List<TilesDefinition> definitions = defintionService.getDefinitions();
 		return definitions;
 	}
-
+	
 	@RequestMapping(params = "mode=edit", method = RequestMethod.GET)
-	public ModelAndView getEditPage(HttpServletRequest request)
-			throws EntityNotFoundException {
-		int sitemapId = getSitemapId(request);
-		String[] path = getPagePath(request);
-		SitemapItem item = sitemapItemService.getItemByPath(sitemapId, path);
-		
-		ModelAndView mv = new ModelAndView(item.getDecorationName());
-		mv.addObject(SITEMAP_ITEM_ATTRIBUTE, item);
-		mv.addObject(TEMPLATES_ATTRIBUTE, getDefinitions());
-		return mv;
+	public String showEditForm(@ModelAttribute SitemapItemForm form) {
+		return form.getSitemapItem().getDecorationName();
 	}
 
 	@RequestMapping(params = "mode=addPage", method = RequestMethod.GET)
-	public ModelAndView getNewPage(HttpServletRequest request)
-			throws EntityNotFoundException {
-		int sitemapId = getSitemapId(request);
-		Sitemap sitemap = sitemapService.getSitemap(sitemapId);
-		SitemapItem item = new SitemapItem();
-		List<TilesDefinition> definitions = getDefinitions();
-		item.setDecorationName(definitions.iterator().next().getName());
-		ModelAndView mv = new ModelAndView(item.getDecorationName());
-		mv.addObject(SITEMAP_ITEM_ATTRIBUTE, item);
-		mv.addObject(SITEMAP_ATTRIBUTE, sitemap);
-		mv.addObject(TEMPLATES_ATTRIBUTE, definitions);
-		return mv;
+	public String showNewForm(@ModelAttribute SitemapItemForm form) {
+		return form.getSitemapItem().getDecorationName();
 	}
+	
+	@ModelAttribute
+	public SitemapItemForm getForm(@RequestParam String mode, HttpServletRequest request) throws EntityNotFoundException {
+		SitemapItemForm form = new SitemapItemForm();
+		int sitemapId = getSitemapId(request);
+		String[] path = getPagePath(request);
+		SitemapItem item = null;
+		
+		List<TilesDefinition> templates = getDefinitions();
+		if("edit".equals(mode)){
+			item = sitemapItemService.getItemByPath(sitemapId, path);
+			form.setSiblings(sitemapItemService.getSiblings(item));
+		}
+		else {
+			item = new SitemapItem();
+			Sitemap sitemap = sitemapService.getSitemap(sitemapId, false);
+			item.setSitemap(sitemap);
+			item.setDecorationName(templates.iterator().next().getName());
+			form.setSiblings(sitemap.getSitemapItems());
+		}
+		
+		form.setSitemapItem(item);
+		form.setSitemapItems(sitemapItemService.getAllSitemapItems(sitemapId));
+		form.setTemplates(templates);		
+		
+		return form;
+	}
+	
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String storePage(@ModelAttribute("sitemapItem") SitemapItem form,
-			Model model, BindingResult result, HttpServletRequest request)
+	public String storePage(@ModelAttribute("sitemapItemForm") SitemapItemForm form, ModelMap model, BindingResult result, HttpServletRequest request)
 			throws EntityNotFoundException {
-		new SitemapItemValidator().validate(form, result);
-		if (result.hasErrors()) {
-			return null;
-		}
-		sitemapItemService.storeSitemapItem(form);
+		
+		new SitemapItemFormValidator().validate(form, result);
+		
+		String action = request.getParameter("action");
 
-		return "redirect:/" + form.getPathAsString() + ".html";
+		if("decorationName".equals(action)) {
+			return form.getSitemapItem().getDecorationName();
+		}
+		else if("parent".equals(action)) {
+			Set<SitemapItem> items = sitemapItemService.getSiblings(form.getParent());
+			form.setSiblings(items);
+			form.getSitemapItem().setParent(form.getParent());
+			return form.getSitemapItem().getDecorationName();
+		}
+		if (result.hasErrors()) {
+			return form.getSitemapItem().getDecorationName();
+		}
+		sitemapItemService.storeSitemapItem(form.getSitemapItem());
+
+		return "redirect:/" + form.getSitemapItem().getPathAsString() + ".html";
 	}
 
 }

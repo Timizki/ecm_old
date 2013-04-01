@@ -1,4 +1,4 @@
-package net.vksn.ecm.controllers;
+package net.vksn.ecm.cpanel.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,9 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 
 	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
-				
+		
+	public LoginController() {
+		
+	}
     @RequestMapping(value="/login.do", method=RequestMethod.GET)
-    public ModelAndView handleLogin(HttpServletRequest request) {
+    public String handleLogin(HttpServletRequest request) {
     	log.debug("Entry::LoginController.handleLoginForm()");
         String errParam = request.getParameter("error");
         ModelAndView mv = new ModelAndView("login");
@@ -23,12 +26,12 @@ public class LoginController {
             mv.addObject("errorMessage", "Kirjautuminen epäonnistui");
         }
         log.debug("Exiting::LoginController.handleLoginForm()");
-        return mv;
+        return "login";
     }
     
     @RequestMapping(value="/logout.do", method=RequestMethod.GET)
     public ModelAndView handleLogout(HttpServletRequest request) {
-    	  ModelAndView mv = new ModelAndView("login");
+    	ModelAndView mv = new ModelAndView("login");
     	  request.getSession().invalidate();
     	  return mv;
     }
