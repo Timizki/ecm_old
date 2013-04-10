@@ -1,11 +1,17 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="ecm" %>
+<%@ taglib uri="/WEB-INF/ecmTags.tld" prefix="dev" %>
+
 <html>
+
 	<head>	
-		<title>
-			<ecm:title />
-		</title>
+		<dev:head>
+			<title>
+				<ecm:title />
+			</title>
+		</dev:head>
+	
 		<sec:authorize ifAllGranted="ROLE_ADMIN">
 			<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/ecm.css">
 			<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
@@ -39,4 +45,5 @@
 			</jsp:attribute>
 		</ecm:ecm>
 	</body>
+
 </html>

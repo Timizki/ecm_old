@@ -13,7 +13,7 @@
 				<th>Käyttäjäryhmät</th>
 				<th>Sivut</th>
 				<th>Lomakkeet</th>
-				<th>XYZ</th>
+				<th>Tiedostot</th>
 			</tr>
 			<tr>
 				<td>
@@ -66,12 +66,12 @@
 					</ul>
 				</td>
 				<td>
-					<ul id="emcXYZ">
+					<ul id="emcFiles">
 						<li>
-							<span><a href="#">Tulevaisuuden toiminto 1</a></span>
+							<span><a href="${pageContext.request.contextPath}/cpanel/files/list.do">Kaikki tiedostot</a></span>
 						</li>
 						<li>
-							<span><a href="#">Tulevaisuuden toiminto 2</a></span>
+							<span><a href="${pageContext.request.contextPath}/cpanel/files/add.do">Luo uusi tiedosto</a></span>
 						</li>
 					</ul>
 				</td>

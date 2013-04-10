@@ -43,3 +43,9 @@
 #ecmLoginUser {
 	font-weight: bold;
 }
+
+#ecmFileAdd .ecmFileContent input {
+	
+	width: 350px;
+	
+}

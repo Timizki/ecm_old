@@ -46,7 +46,7 @@
 						items="${sitemapItemForm.templates}" itemLabel="name"
 						 itemValue="name"/>
 					<span>Järjestys:</span>
-					<form:select path="sitemapItem.pagePosition" onchange="updateForm('decorationName')" >
+					<form:select path="newPagePosition" onchange="updateForm('position')" >
 						<c:forEach var="pos" items="${sitemapItemForm.siblings}" varStatus="status">
 							<form:option value="${status.index}">${pos.name}</form:option>
 						</c:forEach>

@@ -38,4 +38,14 @@
 		<put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp" />
 		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
 	</definition>
+	
+	<definition name="file.add" extends="layout">
+		<put-attribute name="title" value="Tiedoston luonti" />
+		<put-attribute name="body" value="/WEB-INF/jsp/ecm/files/add.jsp" />
+	</definition>
+	
+	<definition name="file.list" extends="layout">
+		<put-attribute name="title" value="Tiedostot" />
+		<put-attribute name="body" value="/WEB-INF/jsp/ecm/files/list.jsp" />
+	</definition>
 </tiles-definitions>

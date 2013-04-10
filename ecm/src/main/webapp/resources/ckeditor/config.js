@@ -4,13 +4,14 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
+	config.extraPlugins = 'ecm';
 	// Define changes to default configuration here.
 	// For the complete reference:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
-		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+		{ name: 'clipboard',   groups: [ 'clipboard', 'undo'] },
 		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
 		{ name: 'links' },
 		{ name: 'insert' },
@@ -23,7 +24,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
 		{ name: 'styles' },
 		{ name: 'colors' },
-		{ name: 'about' }
+		{ name: 'ecm' }
 	];
 
 	// Remove some buttons, provided by the standard plugins, which we don't

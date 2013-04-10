@@ -17,6 +17,10 @@
 		<security:logout invalidate-session="true" logout-url="/logout.do"/>
 		<security:form-login login-page="/login.do" 
 				always-use-default-target="true"
-				authentication-failure-url="/login.do?errors=true" />		
+				authentication-failure-url="/login.do?errors=true"
+				authentication-success-handler-ref="authenticationSuccessHandler" />		
 	</security:http>
+	<bean id="authenticationSuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+	    <property name="useReferer" value="true" />
+	</bean>
 </beans>

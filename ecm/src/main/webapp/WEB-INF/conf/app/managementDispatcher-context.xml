@@ -12,6 +12,8 @@
          http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<annotation-driven />
+		<context:component-scan base-package="net.vksn.fileservice.service" />
+	<context:component-scan base-package="net.vksn.fileservice.dao" />
 	<context:component-scan base-package="net.vksn.ecm.tiles" />
 	<context:component-scan base-package="net.vksn.ecm.cpanel.controllers" />
 	<beans:bean id="managementTilesConfigurer"

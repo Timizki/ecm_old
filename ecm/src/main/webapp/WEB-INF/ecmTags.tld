@@ -5,6 +5,10 @@
 	<tlib-version>1.0</tlib-version>
 	<jsp-version>2.1</jsp-version>
 	<tag>
+		<name>head</name>
+		<tag-class>net.vksn.ecm.tags.Head</tag-class>
+	</tag>
+	<tag>
 		<name>navigationLevel</name>
 		<tag-class>net.vksn.ecm.tags.NavigationLevel</tag-class>
 		<bodycontent>JSP</bodycontent>
@@ -41,6 +45,11 @@
 		<attribute>
 			<name>sitemapId</name>
 			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>sitemap</name>
+			<rtexprvalue>true</rtexprvalue>
+			<type>net.vksn.sitemap.model.Sitemap</type>
 		</attribute>
 	</tag>
 	<tag>

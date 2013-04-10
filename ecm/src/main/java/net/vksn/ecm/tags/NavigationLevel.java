@@ -3,12 +3,14 @@ package net.vksn.ecm.tags;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.tagext.IterationTag;
 
+import net.vksn.ecm.comparator.NavigationItemComparator;
 import net.vksn.sitemap.model.SitemapItem;
 import net.vksn.sitemap.services.SitemapItemService;
 
@@ -16,6 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 public class NavigationLevel extends BodyTagSupport {
+	private static final long serialVersionUID = 1L;
 
 	private static final String PAGECONTEXT_STYLECLASS_ATTRIBUTE = "styleClass";
 
@@ -24,19 +27,9 @@ public class NavigationLevel extends BodyTagSupport {
 	private SitemapItem sitemapItem;
 	private SitemapItem activeSitemapItem;
 	private SitemapItem itemToHandle;
-	private Set<SitemapItem> currentLevelsItems;
+	private TreeSet<SitemapItem> currentLevelsItems;
 	private Iterator<SitemapItem> currentLevelIterator;
 	private int itemNumber = 0;
-	
-	private SitemapItemService getSitemapItemService() {
-		if (sitemapItemService == null) {
-			WebApplicationContext webApplicationContext = WebApplicationContextUtils
-					.getWebApplicationContext(pageContext.getServletContext());
-			this.sitemapItemService = webApplicationContext
-					.getBean(SitemapItemService.class);
-		}
-		return sitemapItemService;
-	}
 
 	public String getVar() {
 		return var;
@@ -62,11 +55,23 @@ public class NavigationLevel extends BodyTagSupport {
 		this.sitemapItem = sitemapItem;
 	}
 
-	private static final long serialVersionUID = 1L;
-
+	private Set<SitemapItem> getSiblings() {
+		Set<SitemapItem> siblings = null;
+		SitemapItem parent = sitemapItem.getParent();
+		if(parent != null) {
+			siblings = parent.getChildrens();
+		}
+		else {
+			siblings = sitemapItem.getSitemap().getSitemapItems();
+		}
+		return siblings;
+	}
+	
+	
 	@Override
 	public int doStartTag() throws JspException {
-		currentLevelsItems = getSitemapItemService().getSiblings(sitemapItem);
+		currentLevelsItems = new TreeSet<SitemapItem>(new NavigationItemComparator());
+		currentLevelsItems.addAll(getSiblings());
 		currentLevelIterator = currentLevelsItems.iterator();
 		if(currentLevelIterator.hasNext()) {
 			SitemapItem item = currentLevelIterator.next();

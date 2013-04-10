@@ -15,8 +15,8 @@
 		<property name="url" value="jdbc:postgresql:ecm" />
 		<property name="username" value="ecm" />
 		<property name="password" value="" />
-		<property name="maxActive" value="100"/>
-		<property name="minIdle" value="10"/>
+		<property name="maxActive" value="35"/>
+		<property name="minIdle" value="5"/>
 	</bean>
 	
 	<bean id="sessionFactory"
@@ -35,6 +35,7 @@
 		</property>
 		<property name="packagesToScan">
 			<list>
+				<value>net.vksn.fileservice.model</value>
 				<value>net.vksn.sitemap.model</value>
 				<value>net.vksn.ecm.model</value>
 				<value>net.vksn.bedrock.model</value>

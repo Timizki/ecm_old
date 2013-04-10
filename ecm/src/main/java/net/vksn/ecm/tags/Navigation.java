@@ -26,7 +26,8 @@ public class Navigation extends BodyTagSupport {
 	private SitemapItem sitemapItem;
 	private SitemapItem itemToIterate;
 	private Integer sitemapId;
-
+	private Sitemap sitemap;
+	
 	public String getVar() {
 		return var;
 	}
@@ -59,15 +60,24 @@ public class Navigation extends BodyTagSupport {
 		this.sitemapId = sitemapId;
 	}
 
+	public Sitemap getSitemap() {
+		return sitemap;
+	}
+	
+	public void setSitemap(Sitemap sitemap) {
+		this.sitemap = sitemap;
+	}
+	
 	@Override
 	public int doStartTag() throws JspException {
-		
 		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(super.pageContext.getServletContext());
 		SitemapService sitemapService = context.getBean(SitemapService.class);
-		Sitemap sitemap = null;
-		try {
-			sitemap = sitemapService.getSitemap(sitemapId, false);
-		} catch (EntityNotFoundException e) {
+		Sitemap sitemap = getSitemap();
+		if(sitemap == null) {
+			try {
+				sitemap = sitemapService.getSitemap(sitemapId, false);
+			} catch (EntityNotFoundException e) {
+			}
 		}
 		if(!sitemap.getSitemapItems().isEmpty()) {
 			sitemapItem = sitemap.getSitemapItems().iterator().next();
@@ -118,5 +128,4 @@ public class Navigation extends BodyTagSupport {
 		round = 1;
 		return super.doEndTag();
 	}
-
 }

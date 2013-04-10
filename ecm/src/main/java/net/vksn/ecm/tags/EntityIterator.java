@@ -38,6 +38,7 @@ public class EntityIterator extends BodyTagSupport {
 			pageContext.setAttribute(var, iterator.next());
 			return EVAL_BODY_BUFFERED;
 		}
+		
 		return SKIP_BODY;
 	}
 	
