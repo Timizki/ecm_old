@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<data-sources>
-	<data-source id="postgresql-1363972621378-1774128351" provider="generic" driver="postgresql" name="PostgreSQL - ecm" create-date="1363972621379" update-date="1363972663738" save-password="true" show-system-objects="true" read-only="false">
-		<connection server="" database="" url="jdbc:postgresql://localhost/ecm" user="ecm" password="FgcLQKA=" type="dev"/>
-	</data-source>
-</data-sources>
