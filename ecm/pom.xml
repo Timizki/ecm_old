@@ -7,8 +7,8 @@
 		<version>0.5.0-SNAPSHOT</version>
 	</parent>
 	<scm>
-		<connection>scm:git:ssh://git@github.com/Timizki/testing.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/Timizki/testing.git</developerConnection>
+		<connection>scm:git:ssh://git@github.com/Timizki/ecm.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/Timizki/ecm.git</developerConnection>
 	</scm>
 	<groupId>net.vksn.ecm</groupId>
 	<artifactId>ecm</artifactId>
@@ -199,6 +199,13 @@
 	</dependencies>
 	<build>
 		<finalName>ecm</finalName>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh-external</artifactId>
+				<version>2.4</version>
+			</extension>
+		</extensions>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -211,4 +218,22 @@
 			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+		<repository>
+			<id>nas-release</id>
+			<url>http://10.0.0.2:/var/repository/releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<distributionManagement>
+		<repository>
+			<id>nas-release</id>
+			<url>scpexe://10.0.0.2:/var/repository/releases/</url>
+		</repository>
+	</distributionManagement>
 </project>
